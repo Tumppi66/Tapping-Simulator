@@ -1,0 +1,389 @@
+getgenv().fasttap = false
+getgenv().normaltap = false
+getgenv().dailyreward = false
+getgenv().groupreward = false
+getgenv().rankreward = false
+getgenv().rebirths = 1
+getgenv().autouprebirth = false
+getgenv().autoupjumps = false
+getgenv().autoupstorage = false
+getgenv().autoupgems = false
+getgenv().tripletap = false
+getgenv().autox2luck = false
+getgenv().autox3luck = false
+function fasttap()
+    spawn(function()
+        while getgenv().fasttap == true do
+            local faststring = "Main"
+            game:GetService("ReplicatedStorage").Events.Tap:FireServer(faststring)
+            task.wait()
+        end
+    end)
+end
+function normaltap()
+    spawn(function()
+        while getgenv().normaltap == true do
+            local normalstring = "Main"
+            game:GetService("ReplicatedStorage").Events.Tap:FireServer(normalstring)
+            wait()
+        end
+    end)
+end
+function dailyreward()
+    while getgenv().dailyreward == true do
+        game:GetService("ReplicatedStorage").Events.OpenDailyReward:InvokeServer()
+        task.wait(10)
+    end
+end
+function groupreward()
+    while getgenv().groupreward == true do
+        game:GetService("ReplicatedStorage").Events.ClaimGroupRewards:FireServer()
+        task.wait(10)
+    end
+end
+function rankreward()
+    while getgenv().rankreward == true do
+        game:GetService("ReplicatedStorage").Events.ClaimRankReward:FireServer()
+        task.wait(10)
+    end
+end
+function autorebirth()
+    while getgenv().rebirth == true do
+        local ohNumber1 = getgenv().rebirths
+        game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(ohNumber1)
+        task.wait(1)
+    end
+end
+function autouprebirth()
+    while getgenv().autouprebirth == true do
+        game:GetService("ReplicatedStorage").Events.Upgrade:FireServer("rebirthUpgrades")
+        task.wait(1)
+    end
+end
+function autoupjumps()
+    while getgenv().autoupjumps == true do
+        game:GetService("ReplicatedStorage").Events.Upgrade:FireServer("jumps")
+        task.wait(1)
+    end
+end
+function autoupstorage()
+    while getgenv().autoupstorage == true do
+        game:GetService("ReplicatedStorage").Events.Upgrade:FireServer("storageUpgrade")
+        task.wait(1)
+    end
+end
+function autoupgems()
+    while getgenv().autoupgems == true do
+        game:GetService("ReplicatedStorage").Events.Upgrade:FireServer("gemMultiplierUpgrade")
+        task.wait(1)
+    end
+end
+function autox3taps()
+    while getgenv().tripletap == true do
+        game:GetService("ReplicatedStorage").Events.UseBoost:FireServer("tripleTaps")
+        task.wait(5)
+    end
+end
+function autox2luck()
+    while getgenv().autox2luck == true do
+        game:GetService("ReplicatedStorage").Events.UseBoost:FireServer("doubleLuck")
+        task.wait(5)
+    end
+end
+function autox3luck()
+    while getgenv().autox3luck == true do
+        game:GetService("ReplicatedStorage").Events.UseBoost:FireServer("tripleLuck")
+        task.wait(5)
+    end
+end
+local Atlas = loadstring(game:HttpGet("https://siegehub.net/Atlas_v2.lua"))()
+local Window = Atlas:CreateWindow({
+    Name = "Casual Tapping Simulator GUI";
+    Version = "v1.0";
+    ConfigFolder = "";
+    Bind = "LeftControl";
+})
+local main = Window:CreatePage("Main")
+local mainleft = main:CreateLeftSection("Auto Options")
+local mainright = main:CreateRightSection("Auto Rebirth")
+local mainright2 = main:CreateRightSection("Auto Upgrade")
+local mainright3 = main:CreateRightSection("Auto Boosts")
+local mainleft2 = main:CreateLeftSection("Teleports")
+local Toggle = mainleft:CreateToggle("fasttap",{
+    Name = "Auto Tap (FAST)";
+    Callback = function(state)
+        if state == true then
+            if getgenv().normaltap == false then
+                getgenv().fasttap = true
+                fasttap()
+            else
+                getgenv().fasttap = false
+            end
+        else
+            getgenv().fasttap = false
+        end
+    end;
+    Default = false;
+})
+local Toggle2 = mainleft:CreateToggle("normaltap",{
+    Name = "Auto Tap (NORMAL)";
+    Callback = function(state)
+        if state == true then
+            if getgenv().fasttap == false then
+                getgenv().normaltap = true
+                normaltap()
+            else
+                getgenv().normaltap = false
+            end
+        else
+            getgenv().normaltap = false
+        end
+    end;
+    Default = false;
+})
+local Toggle3 = mainleft:CreateToggle("dailyreward",{
+    Name = "Auto Claim Daily Reward";
+    Callback = function(state)
+        if state then
+            getgenv().dailyreward = true
+            dailyreward()
+        else
+            getgenv().dailyreward = false
+        end
+    end;
+    Default = false;
+})
+local Toggle4 = mainleft:CreateToggle("groupreward",{
+    Name = "Auto Claim Group Reward";
+    Callback = function(state)
+        if state then
+            getgenv().groupreward = true
+            groupreward()
+        else
+            getgenv().groupreward = false
+        end
+    end;
+    Default = false;
+})
+local Toggle5 = mainleft:CreateToggle("rankreward",{
+    Name = "Auto Claim Rank Rewards";
+    Callback = function(state)
+        if state then
+            getgenv().rankreward = true
+            rankreward()
+        else
+            getgenv().rankreward = false
+        end
+    end;
+    Default = false;
+})
+local codesTable = {
+    "70m",
+    "freepetcode123",
+    "50m",
+    "release",
+    "upd16",
+    "50mvisits",
+    "60m",
+    "spooky",
+    "secretfreepetcode",
+    "update4",
+    "35m",
+    "upd17",
+    "upd18",
+    "upd20",
+    "void",
+    "update11ty",
+    "testing",
+    "update3",
+    "freepetcode2",
+    "magma",
+    "30m",
+    "40m",
+    "upd23",
+    "fantasy",
+    "45M",
+    "countdown",
+    "update2",
+    "75m",
+    "upd15",
+    "upd12",
+    "space",
+    "20M",
+    "50mvisits",
+    "secret",
+    "ididntexpectyoutobeabletoreadbackwards",
+    "15KLIKESTHANKYOU",
+    "upd19"
+}
+local Button = mainleft:CreateButton("Redeem Codes",function()
+    for _,codes in pairs(codesTable) do
+        game:GetService("ReplicatedStorage").Events.ClaimCode:FireServer(codes)
+        task.wait()
+    end
+end)
+local Slider = mainright:CreateSlider("mySlider",{
+    Name = "Slider";
+    Min = 1;
+    Max = 10000;
+    Default = 10;
+    DecimalPlaces = 0;
+    AllowValuesOutsideRange = true;
+    Callback = function(z)
+        getgenv().rebirths = z
+   end
+})
+local Toggle = mainright:CreateToggle("autor",{
+    Name = "Auto Rebirth";
+    Callback = function(state)
+        if state then
+            getgenv().rebirth = true
+            autorebirth()
+        else
+            getgenv().rebirth = false
+        end
+    end;
+    Default = false;
+})
+local label = mainright:CreateLabel("You can also type the value.",false)
+local Toggle = mainright2:CreateToggle("autoup1",{
+    Name = "Auto Upgrade Rebirth";
+    Callback = function(state)
+        if state then
+            getgenv().autouprebirth = true
+            autouprebirth()
+        else
+            getgenv().autouprebirth = false
+        end
+    end;
+    Default = false;
+})
+local Toggle = mainright2:CreateToggle("autoup2",{
+    Name = "Auto Upgrade Jumps";
+    Callback = function(state)
+        if state then
+            getgenv().autoupjumps = true
+            autoupjumps()
+        else
+            getgenv().autoupjumps = false
+        end
+    end;
+    Default = false;
+})
+local Toggle = mainright2:CreateToggle("autoup3",{
+    Name = "Auto Upgrade Gems";
+    Callback = function(state)
+        if state then
+            getgenv().autoupgems = true
+            autoupgems()
+        else
+            getgenv().autoupgems = false
+        end
+    end;
+    Default = false;
+})
+local Toggle = mainright2:CreateToggle("autoup4",{
+    Name = "Auto Upgrade Storage";
+    Callback = function(state)
+        if state then
+            getgenv().autoupstorage = true
+            autoupstorage()
+        else
+            getgenv().autoupstorage = false
+        end
+    end;
+    Default = false;
+})
+local Toggle = mainright3:CreateToggle("boost1",{
+    Name = "Auto Use X3 Taps Boost";
+    Callback = function(state)
+        if state then
+            getgenv().tripletap = true
+            autox3taps()
+        else
+            getgenv().tripletap = false
+        end
+    end;
+    Default = false;
+})
+local Toggle = mainright3:CreateToggle("boost2",{
+    Name = "Auto Use X2 Luck Boost";
+    Callback = function(state)
+        if state then
+            getgenv().autox2luck = true
+            autox2luck()
+        else
+            getgenv().autox2luck = false
+        end
+    end;
+    Default = false;
+})
+local Toggle = mainright3:CreateToggle("boost3",{
+    Name = "Auto Use X3 Luck Boost";
+    Callback = function(state)
+        if state then
+            getgenv().autox3luck = true
+            autox3luck()
+        else
+            getgenv().autox3luck = false
+        end
+    end;
+    Default = false;
+})
+local Dropdown = mainleft2:CreateDropdown("mySelectDropdown", {
+    Name = "Select Island";
+    Values = {"Forest Island", "Flower Island", "Swamp Island","Snow Island","Desert Island","Death Island","Beach Island","Mines Island","Cloud Island","Coral Island","Darkheart Island","Blue Magma","Yellow Magma","Red Magma","Molten Island"};
+    SelectType = "Single"; -- if u want multi just change single to multi
+    Callback = function(new)
+        getgenv().tpto = new
+    end;
+})
+local Button = mainleft2:CreateButton("Teleport To Selected Island",function()
+    local currentOption = getgenv().tpto
+    if currentOption =="Forest Island" then
+        local args = {[1] = CFrame.new(-164, 977, -403) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption =="Flower Island" then
+        local args = {[1] = CFrame.new(-180, 1515, -644) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Swamp Island" then
+        local args = {[1] = CFrame.new(-261, 2114, -655) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Snow Island" then
+        local args = {[1] = CFrame.new(-242, 2934, -465) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Desert Island" then
+        local args = {[1] = CFrame.new(-204, 4226, -772) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Death Island" then
+        local args = {[1] = CFrame.new(-318, 5416, -486) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Beach Island" then
+        local args = {[1] = CFrame.new(-175, 6873, -495) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Mines Island" then
+        local args = {[1] = CFrame.new(-277, 8366, -480) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args)) 
+    elseif currentOption=="Cloud Island" then
+        local args = {[1] = CFrame.new(-333, 11236, -237) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))    
+    elseif currentOption=="Coral Island" then 
+        local args = {[1] = CFrame.new(-476, 13802, -545) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Darkheart Island" then 
+        local args = {[1] = CFrame.new(-454, 17170, -552) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Blue Magma" then
+        local args = {[1] = CFrame.new(1399, 5230, -2954) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Yellow Magma" then
+        local args = {[1] = CFrame.new(1368, 10392, -2868) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    elseif currentOption=="Red Magma" then
+        local args = {[1] = CFrame.new(1382, 13344, -2861) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args)) 
+    elseif currentOption=="Molten Island" then
+        local args = {[1] = CFrame.new(1281, 2184, -2885) * CFrame.Angles(3.1415927410125732, -0, -3.1415927410125732)}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+    end
+end)
